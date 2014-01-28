@@ -24,8 +24,10 @@ Display Display (segments, digits);
 
 void setup(){
   
-  pinMode (39, OUTPUT); //pino erro
-  digitalWrite (39, LOW);
+  pinMode (39, OUTPUT); //plug a Led on this pin. 
+                        //It will turn on when there is an error.
+  digitalWrite (39, LOW);//Case it's another pin, 
+                        //you need to change "pinError" on "display.cpp"
   
   Display.show({"helo"}, 5); //the word with 4 characters that you wanna "write" and the time,
                               //in seconds, that will be showed.

@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "display.h"
 
+#define pinError 39
+
 Display::Display(int *segments, int *digits){
   int i;
   for (i=0; i<8; i++)
@@ -74,9 +76,9 @@ void Display::show(char *frase, int vezes){
    for (k=0; k<vezes*125; k++){
       for (i=0; i<4; i++){
           index = _decodeCharacter(frase[i]);
-           
+
           if (index != 99 and index != 20){
-            
+
             digitalWrite (_digits[i], HIGH);
             for (j=0; j<8; j++){
               digitalWrite (_segments[j], _segmentsValues[index][j]);
@@ -85,8 +87,8 @@ void Display::show(char *frase, int vezes){
           } else {
               //delay(2);
               if (index == 99){
-                if (digitalRead(39) == 0){
-              digitalWrite (39, HIGH); //erro
+                if (digitalRead(pinError) == 0){
+              digitalWrite (pinError, HIGH); //erro
                   }
               }
           }
@@ -95,7 +97,7 @@ void Display::show(char *frase, int vezes){
           digitalWrite (_digits[i], LOW);
       }
    }
-}    
+}
 
 void Display:: _clear(){
   int i;
@@ -103,7 +105,7 @@ void Display:: _clear(){
     digitalWrite (_digits[i], LOW);
    for (i=0; i<4; i++)
      digitalWrite (_segments[i], LOW);
-  
+
 }
 
 

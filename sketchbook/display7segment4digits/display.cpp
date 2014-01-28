@@ -1,4 +1,3 @@
-
 #include "Arduino.h"
 #include "display.h"
 
@@ -22,7 +21,7 @@ void Display::_setup(){
 
 }
 
-int _segmentsValues[19][8] = {{0, 0, 0, 0, 0, 0, 1, 1 }, //0, O
+int _segmentsValues[20][8] = {{0, 0, 0, 0, 0, 0, 1, 1 }, //0, O
                               {1, 0, 0, 1, 1, 1, 1, 1 }, //1, I
                               {0, 0, 1, 0, 0, 1, 0, 1 }, //2
                               {0, 0, 0, 0, 1, 1, 0, 1 }, //3
@@ -38,9 +37,10 @@ int _segmentsValues[19][8] = {{0, 0, 0, 0, 0, 0, 1, 1 }, //0, O
                               {0, 1, 1, 1, 0, 0, 0, 1 }, //F
                               {1, 0, 0, 1, 0, 0, 0, 1 }, //H
                               {1, 0, 0, 0, 0, 1, 1, 1 }, //J
-                              {1, 1, 1, 0, 0, 0, 1, 1 } , //L
-                              {0, 0, 1, 1, 0, 0, 0, 1 } , //P
-                              {1, 0, 0, 0, 0, 0, 1, 1 }}; //U
+                              {1, 1, 1, 0, 0, 0, 1, 1 }, //L
+                              {0, 0, 1, 1, 0, 0, 0, 1 }, //P
+                              {1, 0, 0, 0, 0, 0, 1, 1 }, //U
+                              {1, 0, 1, 1, 1, 1, 1, 1 }};//'
 
 int Display::_decodeCharacter(char c){
   if (c == '0' || c == 'o' || c == 'O') return 0;
@@ -62,6 +62,7 @@ int Display::_decodeCharacter(char c){
   else if (c == 'l' || c=='L') return 16;
   else if (c == 'p' || c=='P') return 17;
   else if (c == 'u' || c=='U') return 18;
+  else if (c == '\'') return 19;
   else if (c == ' ') return 20;
   else return 99;
 }
@@ -70,7 +71,7 @@ void Display::show(char *frase, int vezes){
   int i, j, k, index;
   _clear();
 
-   for (k=0; k<vezes*500; k++){
+   for (k=0; k<vezes*125; k++){
       for (i=0; i<4; i++){
           index = _decodeCharacter(frase[i]);
            
@@ -79,16 +80,19 @@ void Display::show(char *frase, int vezes){
             digitalWrite (_digits[i], HIGH);
             for (j=0; j<8; j++){
               digitalWrite (_segments[j], _segmentsValues[index][j]);
-              //Serial.println(_segmentsValues[index][i]);
             }
-            delay (4);
+            //delay (2);
           } else {
-            if (index == 99 and digitalRead(39) == 0){
-            digitalWrite (39, HIGH); //erro
-            }
+              //delay(2);
+              if (index == 99){
+                if (digitalRead(39) == 0){
+              digitalWrite (39, HIGH); //erro
+                  }
+              }
           }
-          _clear();
-          //digitalWrite (_digits[i], LOW);
+          delay(2);
+          //_clear();
+          digitalWrite (_digits[i], LOW);
       }
    }
 }    

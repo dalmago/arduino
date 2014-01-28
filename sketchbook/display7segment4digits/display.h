@@ -12,10 +12,10 @@ class Display
     public:
         Display(int *segments, int *digits);
         void show(char *frase, int vezes);
+        void _clear();
         //void dot();
         //void dash();
     private:
-        void _clear();
         void _setup();
         int _decodeCharacter(char c);
         int _segments[8];

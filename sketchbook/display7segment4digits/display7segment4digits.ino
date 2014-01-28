@@ -30,7 +30,7 @@ void setup(){
                         //you need to change "pinError" on "display.cpp"
   
   Display.show({"helo"}, 5); //the word with 4 characters that you wanna "write" and the time,
-                              //in seconds, that will be showed.
+                              //in seconds, that will be displayed.
                               //It accept spaces and apostrophe
 
   

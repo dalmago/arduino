@@ -7,6 +7,8 @@
 
 #include "display.h"
 
+int botao = 12;
+
 /*
   Pins of the 8 segments (a, b, c, d, e, f, g, dp)
 */
@@ -24,18 +26,44 @@ Display Display (segments, digits);
 
 void setup(){
   
+  pinMode (botao, INPUT);  
   pinMode (39, OUTPUT); //plug a Led on this pin. 
                         //It will turn on when there is an error.
   digitalWrite (39, LOW);//Case it's another pin, 
                         //you need to change "pinError" on "display.cpp"
   
-  Display.show({"helo"}, 5); //the word with 4 characters that you wanna "write" and the time,
+  Display.show({"helo"}, 1); //the word with 4 characters that you wanna "write" and the time,
                               //in seconds, that will be displayed.
-                              //It accept spaces and apostrophe
-
-  
+                              //It accept spaces and apostrophe  
+ 
+ //int x = 0;
+ while (digitalRead(botao) == 0){
+   digitalWrite (39, 1);
+   //x = digitalRead(botao);
+ }
+ digitalWrite (39, 0);
 };
+
+char frase[4] = {'0', '0', '0', '0'};
+int i = 0;
 
 void loop(){
-};
+  Display.show(frase, 1);
+  frase[3]++;
+  if (frase[3] == '9'+1){
+    frase[3] = '0';
+    frase[2]++;
+  }
+  if (frase[2] == '5'+1){
+    frase[2] = '0';
+    frase[1]++;
+  }
+  if (frase[1] == '9'+1){
+    frase[1] = '0';
+    frase[0]++;
+  }
+  if (frase[0] == '5'+1){
+    frase[0] = '0';
+  }  
+}
 

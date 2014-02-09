@@ -7,7 +7,7 @@
 
 #include "display.h"
 
-int botao = 12;
+int botao = 43;
 
 /*
   Pins of the 8 segments (a, b, c, d, e, f, g, dp)
@@ -23,6 +23,7 @@ int digits[4] = {
   32, 27, 24, 9};
 
 Display Display (segments, digits);
+
 
 void setup(){
   
@@ -42,7 +43,7 @@ void setup(){
    //x = digitalRead(botao);
  }
  digitalWrite (39, 0);
-};
+}
 
 char frase[4] = {'0', '0', '0', '0'};
 int i = 0;

@@ -1,6 +1,6 @@
-int analogPin = 3;     // the IR transistor
+int analogPin = 15;     // the IR transistor
 
-int IRled = 51;
+int IRled = 35;
 int sensorLED = 39;
 
 int val = 0;           // variable to store the value read
@@ -26,9 +26,9 @@ void loop()
   val = analogRead(analogPin);    // read the input pin
 
   //Serial.println(val);             // debug value
-  delay (3);
+  delay (10);
   
-  if (val > 10)
+  if (val > 16)
     digitalWrite (sensorLED, 1);
    else
      digitalWrite (sensorLED, 0);

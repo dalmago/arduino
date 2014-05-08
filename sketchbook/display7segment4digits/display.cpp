@@ -45,27 +45,27 @@ int _segmentsValues[20][8] = {{0, 0, 0, 0, 0, 0, 1, 1 }, //0, O
                               {1, 0, 1, 1, 1, 1, 1, 1 }};//'
 
 int Display::_decodeCharacter(char c){
-  if (c == '0' || c == 'o' || c == 'O') return 0;
-  else if (c == '1' || c == 'i' || c == 'I') return 1;
-  else if (c == '2') return 2;
-  else if (c == '3') return 3;
-  else if (c == '4') return 4;
-  else if (c == '5' || c == 's' || c == 'S') return 5;
-  else if (c == '6') return 6;
-  else if (c == '7') return 7;
-  else if (c == '8') return 8;
-  else if (c == '9') return 9;
-  else if (c == 'a' || c == 'A') return 10;
-  else if (c == 'c' || c=='C') return 11;
-  else if (c == 'e' || c=='E') return 12;
-  else if (c == 'f' || c=='F') return 13;
-  else if (c == 'h' || c=='H') return 14;
-  else if (c == 'j' || c=='J') return 15;
-  else if (c == 'l' || c=='L') return 16;
-  else if (c == 'p' || c=='P') return 17;
-  else if (c == 'u' || c=='U') return 18;
-  else if (c == '\'') return 19;
-  else if (c == ' ') return 20;
+  if (c == 48 || c == 79 || c == 111) return 0;
+  else if (c == 49 || c == 105 || c == 73) return 1;
+  else if (c == 50) return 2;
+  else if (c == 51) return 3;
+  else if (c == 52) return 4;
+  else if (c == 53 || c == 83 || c == 115) return 5;
+  else if (c == 54) return 6;
+  else if (c == 55) return 7;
+  else if (c == 56) return 8;
+  else if (c == 57) return 9;
+  else if (c == 65 || c == 97) return 10;
+  else if (c == 67 || c==99) return 11;
+  else if (c == 69 || c==101) return 12;
+  else if (c == 70 || c==102) return 13;
+  else if (c == 72 || c==104) return 14;
+  else if (c == 74 || c==106) return 15;
+  else if (c == 76 || c==108) return 16;
+  else if (c == 80 || c==112) return 17;
+  else if (c == 85 || c==117) return 18;
+  else if (c == 39) return 19;
+  else if (c == 32) return 20;
   else return 99;
 }
 
